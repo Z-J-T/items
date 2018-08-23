@@ -1,12 +1,11 @@
 #include"cli.h"
 
 const char* IP = "127.0.0.1";
-
 const int SER_PORT = 8000;
 
 int main()
 {
-	//链接服务器
+    //链接服务器
     int fd = socket(AF_INET,SOCK_STREAM,0);
     assert(fd != -1);
 
@@ -18,7 +17,7 @@ int main()
     int res = connect(fd,(struct sockaddr*)&saddr,sizeof(saddr));
     
     assert(res != -1);
-	run(fd);
+    run(fd);
 	
     return 0;
 }
