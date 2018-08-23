@@ -85,6 +85,7 @@
 - 进入**断点续传判断模块**：
 
    - **断点问题的产生**(这部分在正常上传模块部分，非判断模块)：当我文件正常收发过程中，客户端突然关闭，在服务器端必然产生的一个不完整的文件，我把服务器已经接收到的文件大小（cur_size）和MD5值保存在一个broken数组。
+   
 ![enter description here](./images/1.png)
 
 - 所以，我会先在broken数组中查询有无客户端发送过来的MD5
@@ -132,7 +133,7 @@
 
 ### 二、主要框架介绍
 
-![局域网聊天项目设计图](./images/局域网聊天项目设计图.png)
+![局域网聊天项目设计图](https://github.com/Z-J-T/items/blob/master/picture/%E5%B1%80%E5%9F%9F%E7%BD%91%E8%81%8A%E5%A4%A9%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%9B%BE.png)
 
 ### 三、整体流程介绍
 
@@ -150,26 +151,26 @@
    - 循环
       - 创建sockpair
       - 创建threadnum条线程，每条线程线程参数为s1端
-   ![enter description here](./images/1_1.png)
+   ![enter description here](https://github.com/Z-J-T/items/blob/master/picture/1.png?raw=true)
       - 在线程函数中创建Childthread(s1)对象
-      ![enter description here](./images/4.png)
+      ![enter description here](https://github.com/Z-J-T/items/blob/master/picture/4.png?raw=true)
       - 子线程对象构造时
          - 先创建libevent
          - 把s1监听起来
-   ![enter description here](./images/3_1.png)
+   ![enter description here](https://github.com/Z-J-T/items/blob/master/picture/3.png?raw=true)
    - 创建套接字，绑定端口号，listen
    - 创建event_new,把套接字监听起来，当有客户端来连接的时候，fd上有事件发生，就会调回调函数
-![enter description here](./images/2_1.png)
+![enter description here](https://github.com/Z-J-T/items/blob/master/picture/2.png?raw=true)
 
 当客户端connect:
    - 回调函数accept处理产生一个文件描述符cli_fd
    - 先在map<s1,int> 中找一个负载量最小的sockpair端口
    - 把文件描述符通过sockpair传给子线程对象
-   ![enter description here](./images/5.png)
+   ![enter description here](https://github.com/Z-J-T/items/blob/master/picture/5.png?raw=true)
    - 子线程对象s1端读到数据，调回调函数接收到cli_fd
    - 把接收到的文件描述符监听起来，至此之后该客户端所有的交互都由该线程来处理
    - 最后把自己当前负载量返回给主线程Ser对象
- ![enter description here](./images/6.png)
+ ![enter description here](https://github.com/Z-J-T/items/blob/master/picture/6.png?raw=true)
 ##### MVC
 客户端
 - 根据用户选择输入数据，使用json打包把数据send给服务器
