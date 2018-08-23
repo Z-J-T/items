@@ -43,7 +43,7 @@ void run(int fd)
 	while(flag)
 	{	
         cout<<"-----------------------------------"<<endl;
-		cout<<"QQ"<<endl;
+	cout<<"QQ"<<endl;
         cout<<"------------------"<<endl;
         cout<<"1.Login"<<endl;
         cout<<"2.Register"<<endl;
@@ -56,12 +56,12 @@ void run(int fd)
         if(isdigit(buff[0]) && (choice = atoi(buff)) <= 3 && choice >0)
         {       
             for(int i = 0;i<MenuTablesize ;++i)
-		    {
+	    {
                 if(choice == MenuTable[i].choice)
                 {
     		    	(*MenuTable[i].pfunc)(fd);
     	        }
-	        }
+	    }
         }
         else
         {
@@ -76,28 +76,28 @@ void Login(int fd)
     cout<<"Login"<<endl;
     cout<<"------------------"<<endl;
     char name[20] ={0};
-	cout<<"please cin name:"<<endl;
-	cin>>name;
+    cout<<"please cin name:"<<endl;
+    cin>>name;
 
-	char pw[20] ={0};
-	cout<<"please cin password"<<endl;
-	cin>>pw;
+    char pw[20] ={0};
+    cout<<"please cin password"<<endl;
+    cin>>pw;
 
     //json 把类型 name pw 打包
-	Json::Value val;
+    Json::Value val;
     val["type"] = TYPE_LOGIN;
     val["name"] = name;
     val["pw"] = pw;
     
-	//将其发送给服务器
+    //将其发送给服务器
     if( -1 == send(fd,val.toStyledString().c_str(),strlen(val.toStyledString().c_str()),0))
     {
     	cerr<<"send reason fail;errno:"<<errno<<endl;
     	return;
     }
 
-	//接受服务器的回应
-	char buff[128] = "";
+    //接受服务器的回应
+    char buff[128] = "";
 
     if(recv(fd,buff,127,0)<0)
     {
@@ -105,14 +105,14 @@ void Login(int fd)
         cout<<"反馈异常！"<<endl;
         return ;
     }
-	if(strcmp(buff,"ok") == 0)
- 	{
+    if(strcmp(buff,"ok") == 0)
+    {
         //两个线程 一个接收 一个发送(主线程)
         pthread_create(&id,NULL,thread_recv,(void*) fd);
         cout<<"登录成功！"<<endl;
 		login_success(fd);
-	}	
-	else
+    }	
+    else
     {
         //失败->
         cout<<"登录失败"<<endl;
@@ -148,14 +148,12 @@ void login_success(int fd)
         cout<<"功能列表："<<endl;
         cout<<"------------------"<<endl;
 
-	    cout<<"1.get list"<<endl;
-	    cout<<"2.talk one"<<endl;
-	    cout<<"3.talk group"<<endl;
+	cout<<"1.get list"<<endl;
+	cout<<"2.talk one"<<endl;
+	cout<<"3.talk group"<<endl;
         cout<<"4.exit"<<endl;
-        //cout<<"请输入："; 
        
         char buff[128]="";
-        //fgets(buff,127,stdin);
         cin>>buff;
         if(isdigit(buff[0]) && (choice = atoi(buff)) <= 4 && choice >0)
         {
@@ -181,17 +179,17 @@ void Register(int fd)
     while(1)
     {
         cout<<"-----------------------------------"<<endl;
-	    cout<<"Register"<<endl;
+	cout<<"Register"<<endl;
         cout<<"------------------"<<endl;
         cout<<"please cin name:"<<endl;
-	    cin>>name;
+	cin>>name;
             
         char ps[20] = {0};
         cout<<"please cin password:"<<endl;
         cin>>ps;
 
         cout<<"please cin password again:"<<endl;
-	    cin>>pw;
+	cin>>pw;
     
         if(strcmp(ps,pw) == 0)
         {
@@ -203,31 +201,31 @@ void Register(int fd)
     }
 
     //json 把类型 name pw 打包
-	Json::Value val;
+    Json::Value val;
     val["type"] =TYPE_REGISTER;
     val["name"] = name;
     val["pw"] = pw;
     
-	//将其发送给服务器
+    //将其发送给服务器
     if( -1 == send(fd,val.toStyledString().c_str(),strlen(val.toStyledString().c_str()),0) )
     {
     	cerr<<"send reason fail;errno:"<<errno<<endl;
     	return;
     }
 
-	//接受服务器的回应
-	char buff[128] = "";
+    //接受服务器的回应
+    char buff[128] = "";
     if(0 >recv(fd,buff,127,0))
     {
         cout<<"------------------"<<endl;
         cout<<"反馈异常！"<<endl;
         return;
     }	    
-	//成功->
-	if(strcmp(buff,"ok") == 0)
- 	{
+    //成功->
+    if(strcmp(buff,"ok") == 0)
+    {
         cout<<"注册成功"<<endl;
-	}	
+    }	
     //失败->
     else
     {
@@ -243,7 +241,7 @@ void Exit(int fd)
 
 void Get_List(int fd)
 {
-	Json::Value val;
+    Json::Value val;
     val["type"] =TYPE_GETLIST;
     
     if(-1 == send(fd,val.toStyledString().c_str(),strlen(val.toStyledString().c_str()),0))
@@ -303,13 +301,11 @@ void Talk_One(int fd)
     char data[128]="";
     cout<<endl;
     
-
     val["name"] = name;
     while(1)
     {
 
-        cin>>data;
-        
+        cin>>data;  
         if(strncmp(data,"end",3) == 0)
         {
             break;    
@@ -344,7 +340,6 @@ void Talk_Group(int fd)
             break;    
         }
         
-
         val["data"] = data;
 
         if(-1 == send(fd,val.toStyledString().c_str(),strlen(val.toStyledString().c_str()),0))
@@ -359,10 +354,10 @@ void L_Exit(int fd)
 {
     flag1 = false;
     
-	Json::Value val;
+    Json::Value val;
     val["type"] =TYPE_EXIT;
         
-	//将其发送给服务器
+    //将其发送给服务器
     if( -1 == send(fd,val.toStyledString().c_str(),strlen(val.toStyledString().c_str()),0) )
     {
     	cerr<<"send reason fail;errno:"<<errno<<endl;
