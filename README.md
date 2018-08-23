@@ -86,7 +86,7 @@
 
    - **断点问题的产生**(这部分在正常上传模块部分，非判断模块)：当我文件正常收发过程中，客户端突然关闭，在服务器端必然产生的一个不完整的文件，我把服务器已经接收到的文件大小（cur_size）和MD5值保存在一个broken数组。
    
-![enter description here](./images/1.png)
+</br>![enter description here](https://github.com/Z-J-T/items/blob/master/picture/FTP-1.png?raw=true)
 
 - 所以，我会先在broken数组中查询有无客户端发送过来的MD5
    - 如果我在broken数组中找到相同的MD5值
@@ -96,15 +96,15 @@
       - 然后让双方开始继续收发
       - 但是我考虑更多的是：要是再次发生断点问题怎么办？
       - 把这个数组项的size值重新更新
-	![enter description here](./images/2.png)
-	  - return 结束
+     </br> ![enter description here](https://github.com/Z-J-T/items/blob/master/picture/FTP-2.png?raw=true)
+      - return 结束
   -  如果broken数组没有相同的MD5，继续
 
 - 判断库中有没有相同的文件名
    - 重复，通过while循环，让客户端发送新的文件名，再在库中比较有没有同名文件，有的话，继续while循环，直到该名字独一无二
    - 独一无二的
 - 进入正常的文件传输
-  ![enter description here](./images/3.png)
+ </br> ![enter description here](https://github.com/Z-J-T/items/blob/master/picture/FTP-3.png?raw=true)
 
 ## 局域网聊天
 
