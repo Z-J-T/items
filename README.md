@@ -41,7 +41,7 @@
       - exit(0)退出子进程
   
   **具体代码实现**：
-   ![](https://i.imgur.com/ubZLYfG.png)
+ </br>![](https://i.imgur.com/ubZLYfG.png)
    - 对于父进程
       - 先关闭写端 
       - wait（防止产生僵死进程））
@@ -67,7 +67,7 @@
 
 - 首先客户端发送过来他要上传的文件名和MD5值
 
-![](https://github.com/Z-J-T/items/blob/master/picture/FTP%E8%AE%BE%E8%AE%A1.png?raw=true)
+</br>![](https://github.com/Z-J-T/items/blob/master/picture/FTP%E8%AE%BE%E8%AE%A1.png?raw=true)
 
 ##### 2.2 秒传
 - 先在库中搜索有没有相同MD5文件
@@ -151,7 +151,7 @@
    - 循环
       - 创建sockpair
       - 创建threadnum条线程，每条线程线程参数为s1端
-      ![enter description here](https://github.com/Z-J-T/items/blob/master/picture/1.png?raw=true)
+     </br> ![enter description here](https://github.com/Z-J-T/items/blob/master/picture/1.png?raw=true)
       - 在线程函数中创建Childthread(s1)对象
       ![enter description here](https://github.com/Z-J-T/items/blob/master/picture/4.png?raw=true)
       - 子线程对象构造时
