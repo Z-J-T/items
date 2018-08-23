@@ -1,6 +1,6 @@
 # items
 
-## FTP 
+## FTP（文件传输）
 FTP
 - ser 服务端
 - cli 客户端
