@@ -151,16 +151,16 @@
    - 循环
       - 创建sockpair
       - 创建threadnum条线程，每条线程线程参数为s1端
-   ![enter description here](https://github.com/Z-J-T/items/blob/master/picture/1.png?raw=true)
+      ![enter description here](https://github.com/Z-J-T/items/blob/master/picture/1.png?raw=true)
       - 在线程函数中创建Childthread(s1)对象
-   ![enter description here](https://github.com/Z-J-T/items/blob/master/picture/4.png?raw=true)
+      ![enter description here](https://github.com/Z-J-T/items/blob/master/picture/4.png?raw=true)
       - 子线程对象构造时
          - 先创建libevent
          - 把s1监听起来
-   ![enter description here](https://github.com/Z-J-T/items/blob/master/picture/3.png?raw=true)
+        ![enter description here](https://github.com/Z-J-T/items/blob/master/picture/3.png?raw=true)
    - 创建套接字，绑定端口号，listen
    - 创建event_new,把套接字监听起来，当有客户端来连接的时候，fd上有事件发生，就会调回调函数
-![enter description here](https://github.com/Z-J-T/items/blob/master/picture/2.png?raw=true)
+   ![enter description here](https://github.com/Z-J-T/items/blob/master/picture/2.png?raw=true)
 
 当客户端connect:
    - 回调函数accept处理产生一个文件描述符cli_fd
@@ -170,7 +170,7 @@
    - 子线程对象s1端读到数据，调回调函数接收到cli_fd
    - 把接收到的文件描述符监听起来，至此之后该客户端所有的交互都由该线程来处理
    - 最后把自己当前负载量返回给主线程Ser对象
- ![enter description here](https://github.com/Z-J-T/items/blob/master/picture/6.png?raw=true)
+   ![enter description here](https://github.com/Z-J-T/items/blob/master/picture/6.png?raw=true)
 ##### MVC
 客户端
 - 根据用户选择输入数据，使用json打包把数据send给服务器
