@@ -67,7 +67,7 @@
 
 - 首先客户端发送过来他要上传的文件名和MD5值
 
-![](https://i.imgur.com/无标题.png)
+![](https://github.com/Z-J-T/items/blob/master/picture/FTP%E8%AE%BE%E8%AE%A1.png?raw=true)
 
 ##### 2.2 秒传
 - 先在库中搜索有没有相同MD5文件
