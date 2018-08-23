@@ -17,10 +17,8 @@
 
 using namespace std;
 
-//
 void run(int fd);
 
-//
 void Login(int fd);
 
 void login_success(int fd);
