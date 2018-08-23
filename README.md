@@ -153,7 +153,7 @@
       - 创建threadnum条线程，每条线程线程参数为s1端
    ![enter description here](https://github.com/Z-J-T/items/blob/master/picture/1.png?raw=true)
       - 在线程函数中创建Childthread(s1)对象
-      ![enter description here](https://github.com/Z-J-T/items/blob/master/picture/4.png?raw=true)
+   ![enter description here](https://github.com/Z-J-T/items/blob/master/picture/4.png?raw=true)
       - 子线程对象构造时
          - 先创建libevent
          - 把s1监听起来
